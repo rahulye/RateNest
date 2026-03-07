@@ -1,0 +1,310 @@
+GITHUB COMMANDS
+
+feat → New feature 				(ex: feat: add calculator display screen)
+
+fix → Bug fix 					(ex: fix: correct division by zero error)
+
+docs → Documentation changes only 		(ex: docs: update README with usage instructions)
+
+style → Code style/formatting, no code logic change 						(ex: style: format CSS file)
+
+refactor → Code change that improves structure but doesn’t add features or fix bugs   (ex: refactor: simplify calculation function)
+
+test → Adding or updating tests 					(ex: test: add unit test for addition)
+
+chore → Maintenance tasks like updating dependencies, configs, or CI/CD    (ex: chore: update npm packages)
+
+
+
+feat → 		New feature
+fix → 		Bug fix
+docs → 		Documentation changes
+style → 	Formatting or UI changes (no logic change)
+refactor → 	Code improvement without new features
+test → 		Adding or updating tests
+chore → 	Maintenance tasks (configs, dependencies)
+
+
+
+git init                                                               # Initialize git
+git remote add origin https://github.com/rahulye/RateNest.git          # Connect to GitHub repo
+git remote -v                                                          # Verify remote
+git add .                                                              # Add all files
+git commit -m "feat: initialize RateNest PERN project structure"       # First commit
+
+
+git branch -M main                                                    # Create main branch
+git push -u origin main                                               # Push project to GitHub
+
+# Create development branch
+git checkout -b develop
+
+# Push develop branch
+git push -u origin develop
+
+
+# Example feature branch for development
+git checkout -b feature/backend-setup
+
+# After coding
+git add .
+git commit -m "feat: setup backend folder structure"
+git push -u origin feature/backend-setup
+
+
+# Merge feature into develop later
+git checkout develop
+git merge feature/backend-setup
+git push
+
+# Merge develop into main when ready
+git checkout main
+git merge develop
+git push
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+TERMINAL BASIC COMMANDS
+
+pwd            - shows the current working directory path
+ls             - lists files and folders in the current directory
+
+FILE & FOLDER COMMANDS
+
+mkdir name     - create a new folder
+touch file     - create a new file
+
+rm file        - delete a file
+rm -r folder   - delete a folder and its contents
+
+
+NODE / NPM
+
+npm init -y            - create package.json automatically
+npm install            - install all dependencies
+
+npm install package    - install a specific package
+
+npm install -D package - install a dev dependency
+
+npm run dev            - run development script
+npm run build          - build project
+
+
+GIT COMMANDS
+
+git init               - initialize a git repository
+
+git clone url          - clone a remote repository
+
+git status             - show current changes
+
+git add .              - add all files to staging
+
+git commit -m "msg"    - commit changes with message
+
+git push               - push commits to remote repo
+
+git pull               - fetch and merge remote changes
+
+git branch             - list branches
+
+git checkout branch    - switch to another branch
+
+git checkout -b name   - create and switch to new branch
+
+git merge branch       - merge branch into current branch
+
+
+UTILITY
+
+history                - show command history
+code .                 - open current folder in VS Code
+
+
+
+-------FRONTEND-------
+
+npm create vite@latest
+npm create vite@latest .           // root directory (default name)
+
+>>>TAILWIND
+npm install tailwindcss @tailwindcss/vite
+
+          @vite.config.ts
+          //  import tailwindcss from '@tailwindcss/vite'
+          //  plugins : [tailwindcss()]
+
+
+
+--------BACKEND-------
+
+npm init -y		 // install package.json
+npm install express
+npm install pg
+npm install mongoose     //mongoose contains mongodb node.js drive internally no need to install mongodb separately\
+npm install @clerk/expres
+npm install drizzle-orm
+npm install cors
+npm install axios
+npm install dotenv         //for .env 
+
+npm install -D nodemon          --> add "dev" : "nodemon src/server.js"
+npm install -D ts-node
+npm install -D drizzle-kit
+npm install -D @types/express
+npm install -D @types/cors
+npm install -D @types/pg
+
+
+>>>>JWT 
+npm install bcryptjs      // for hashing
+npm install jsonwebtoken
+
+>cookie pasrse
+npm install cookie-PARSER                          // expressJS does not parse cookie , we have to parse by middleware.
+import cookieParser from "cookie-parser";              - in server.js
+app.use(cookieParser()); 
+
+
+>>>>Validation
+npm install zod       // BODY schema
+
+
+
+
+
+***************************** ROUGHHH WWWOORRRKKK **************************
+
+
+PRISMA
+
+setup
+npm install prisma
+npm prisma init
+
+npm install prisma --save-dev
+npm install @prisma/client              --> for auto completion //its talk with db and upto date with all db changes
+
+
+Migrate
+npx prisma migrate dev --name the_changes_u_did         //ONLY when you change the Prisma schema
+npx prisma generate                                      //If Prisma Client feels “out of sync” → run generate
+npx prisma migrate reset                                  // CLEAR EVERY ENTRY in DB
+
+
+JWT
+npm install jsonwebtoken
+npm install bcryptjs						               // install openssl lite 64 in internet 6MB
+openssl rand -base64 32                         // generate base64 for JWT
+
+COOKIE PARSER
+npm install cookie-PARSER                          // expressJS does not parse cookie , we have to parse by middleware.
+import cookieParser from "cookie-parser";              - in server.js
+app.use(cookieParser());
+
+
+VALIDATE REQUEST BODY schema
+npm install zod
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------- STATUS CODE ---------------------------------------------------------------------------
+
+HTTP STATUS CODES
+
+2xx → SUCCESS
+200 OK              → Request success
+201 Created         → Data created (POST)
+204 No Content      → Success, no response body (DELETE)
+
+
+
+4xx → CLIENT ERROR
+400 Bad Request     → Invalid input     / missing fields
+401 Unauthorized    → Not logged in     / token missing or expired
+403 Forbidden       → Logged in but no permission
+404 Not Found       → Resource not found
+409 Conflict        → Duplicate data     (email already exists)
+
+5xx → SERVER ERROR
+500 Internal Server Error   → Something broke on server
+
+
+
+
+
+
+
+
+
+
+200 OK
+"Request successful"
+201 Created
+"Resource created successfully"
+204 No Content
+(no response body)
+
+400 Bad Request
+"Invalid request data"
+"Missing required fields"
+"Invalid input format"
+
+401 Unauthorized
+"Authentication required"
+"Invalid or expired token"
+"Unauthorized access"
+"User not found. Authentication failed."
+
+403 Forbidden
+"Access denied"
+"You do not have permission to perform this action"
+"Not allowed to update this item"
+
+404 Not Found
+"Resource not found"
+"User not found"
+"Movie not found"
+
+409 Conflict
+"Resource already exists"
+"Email already registered"
+"Duplicate entry"
+
+422 Unprocessable Entity
+"Validation failed"
+"Invalid email format"
+"Password does not meet requirements"
+
+429 Too Many Requests
+"Too many requests, please try again later"
+
+500 Internal Server Error
+"Internal server error"
+"Something went wrong"
+
