@@ -33,8 +33,12 @@ git add .                                                              # Add all
 git commit -m "feat: initialize RateNest PERN project structure"       # First commit
 
 
-git branch -M main                                                    # Create main branch
-git push -u origin main                                               # Push project to GitHub
+git branch -M main            -M = move/rename branch (force)         # Create main branch      
+git pull origin main          --allow-unrelated-histories
+git push -u origin main    -u means Push branch 'main' and link it with origin/main       # Push project to GitHub
+
+After, git "git push" is default menas  git push origin main
+
 
 # Create development branch
 git checkout -b develop
@@ -62,6 +66,8 @@ git checkout main
 git merge develop
 git push
 
+
+#Delete branch
 
 
 
@@ -153,7 +159,7 @@ npm install @clerk/expres
 npm install drizzle-orm
 npm install cors
 npm install axios
-npm install dotenv         //for .env 
+npm install dotenv         //dotenv loads environment variables from a .env file into process.env, Without dotenv, Node cannot read this file automatically. 
 
 npm install -D nodemon          --> add "dev" : "nodemon src/server.js"
 npm install -D ts-node
