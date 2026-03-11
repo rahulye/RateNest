@@ -147,6 +147,7 @@ npm install tailwindcss @tailwindcss/vite
           //  import tailwindcss from '@tailwindcss/vite'
           //  plugins : [tailwindcss()]
 
+npm install axios
 
 
 --------BACKEND-------

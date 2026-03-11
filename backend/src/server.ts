@@ -3,16 +3,17 @@
 import express from "express";
 const app = express();
 import cors from "cors";
-import ENV from "./config/env";
+import ENV from "./config/env.ts";
 app.use(express.json());
-app.use(
+app.use( 
 	cors({
 		origin: process.env.ALLOWED_FRONTEND_URL || "http://localhost:5173",
 		methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 		credentials: true,
 	}),
 );
-app.get("/", (req, res) => {
+app.get("/health", (req, res) => {
+	console.log("hey from baceknd");
 	res.status(200).json({ message : "Server is running..." });
 });
 
@@ -20,7 +21,7 @@ app.get("/", (req, res) => {
 
 // START SERVER
 app.listen(ENV.PORT, () => {
-	console.log("Success  stServers....");
+	console.log("Starting Server....");
 	console.log(`Server is running at http://localhost:${ENV.PORT}`);
 });
 
@@ -38,8 +39,8 @@ const gracefulShutdown = async (reason: string, error: unknown) => {
 		process.exit(1);
 	}
 };
-process.on("SIGINT", () => gracefulShutdown("SIGINT", Error));
-process.on("SIGTERM", () => gracefulShutdown("SIGTERM", Error));
+process.on("SIGINT", () => gracefulShutdown("SIGINT", null));
+process.on("SIGTERM", () => gracefulShutdown("SIGTERM", null));
 process.on("unhandledRejection", (err) =>
 	gracefulShutdown("unhandledRejection", err),
 );
