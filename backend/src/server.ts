@@ -4,20 +4,24 @@ import express from "express";
 const app = express();
 import cors from "cors";
 import ENV from "./config/env.ts";
-app.use(express.json());
-app.use( 
+import { clerkMiddleware } from "@clerk/express";
+
+// middlewares
+app.use(express.json()); // parse json payloads  Converts JSON → req.body
+app.use(express.urlencoded({ extended: true })); // parse form submissions Converts form fields → req.body
+app.use(clerkMiddleware()); // Identifying loggedIn users
+
+app.use(
 	cors({
-		origin: process.env.ALLOWED_FRONTEND_URL || "http://localhost:5173",
+		origin: ENV.ALLOWED_FRONTEND_URL,
 		methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 		credentials: true,
 	}),
 );
 app.get("/health", (req, res) => {
 	console.log("hey from baceknd");
-	res.status(200).json({ message : "Server is running..." });
+	res.status(200).json({ message: "Server is running..." });
 });
-
-
 
 // START SERVER
 app.listen(ENV.PORT, () => {

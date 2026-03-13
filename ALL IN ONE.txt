@@ -156,13 +156,13 @@ npm init -y		 // install package.json
 npm install express
 npm install pg
 npm install mongoose     //mongoose contains mongodb node.js drive internally no need to install mongodb separately\
-npm install @clerk/expres
+npm install @clerk/express
 npm install drizzle-orm
 npm install cors
 npm install axios
 npm install dotenv         //dotenv loads environment variables from a .env file into process.env, Without dotenv, Node cannot read this file automatically. 
 
-npm install -D nodemon          --> add "dev" : "nodemon src/server.js"
+npm install -D nodemon          --> add "dev" : "nodemon src/server.ts"
 npm install -D ts-node
 npm install -D drizzle-kit
 npm install -D @types/express
