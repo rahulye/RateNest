@@ -164,7 +164,7 @@ npm install dotenv         //dotenv loads environment variables from a .env file
 
 npm install -D nodemon          --> add "dev" : "nodemon src/server.ts"
 npm install -D ts-node
-npm install -D drizzle-kit
+npm install -D drizzle-kit           //to migrate into db and defineConfig
 npm install -D @types/express
 npm install -D @types/cors
 npm install -D @types/pg

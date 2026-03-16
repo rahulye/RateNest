@@ -3,8 +3,9 @@
 import express from "express";
 const app = express();
 import cors from "cors";
-import ENV from "./config/env.ts";
+import ENV from "./config/env";
 import { clerkMiddleware } from "@clerk/express";
+import { pool } from "./db/index";
 
 // middlewares
 app.use(express.json()); // parse json payloads  Converts JSON → req.body
@@ -19,7 +20,7 @@ app.use(
 	}),
 );
 app.get("/health", (req, res) => {
-	console.log("hey from baceknd");
+	console.log("hey from backend");
 	res.status(200).json({ message: "Server is running..." });
 });
 
@@ -37,6 +38,7 @@ const gracefulShutdown = async (reason: string, error: unknown) => {
 	try {
 		console.log("DB disconnected Successfully");
 		console.log("Shutdown completed Successfully");
+		await pool.end();
 		process.exit(0);
 	} catch (error) {
 		console.error("Shutdown failed", error);
