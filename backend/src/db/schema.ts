@@ -56,7 +56,7 @@ const usersRelations = relations(users, ({ many }) => ({
 // a product have many comments but only belongs to one user
 const productsRelations = relations(products, ({ one, many }) => ({
 	comments: many(comments),
-	users: one(users, {
+	user: one(users, {
 		fields: [products.userId],
 		references: [users.id],
 	}),
@@ -68,20 +68,11 @@ const commentsRelations = relations(comments, ({ one }) => ({
 		fields: [comments.productId],
 		references: [products.id],
 	}),
-	users: one(users, {
+	user: one(users, {
 		fields: [comments.userId],
 		references: [users.id],
 	}),
 }));
-
-export {
-	users,
-	products,
-	comments,
-	usersRelations,
-	productsRelations,
-	commentsRelations,
-};
 
 // type interface
 type User = typeof users.$inferSelect;
@@ -92,5 +83,14 @@ type NewComment = typeof comments.$inferInsert;
 
 type product = typeof products.$inferSelect;
 type NewProduct = typeof products.$inferInsert;
+
+export {
+	users,
+	products,
+	comments,
+	usersRelations,
+	productsRelations,
+	commentsRelations,
+};
 
 export { User, NewUser, comment, NewComment, product, NewProduct };
