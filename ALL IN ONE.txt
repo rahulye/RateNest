@@ -252,7 +252,7 @@ HTTP STATUS CODES
 
 
 4xx → CLIENT ERROR
-400 Bad Request     → Invalid input     / missing fields
+400 Bad Request     → Invalid input , required missing inputs    / missing fields
 401 Unauthorized    → Not logged in     / token missing or expired
 403 Forbidden       → Logged in but no permission
 404 Not Found       → Resource not found

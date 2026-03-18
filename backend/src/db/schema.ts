@@ -78,10 +78,10 @@ const commentsRelations = relations(comments, ({ one }) => ({
 type User = typeof users.$inferSelect;
 type NewUser = typeof users.$inferInsert;
 
-type comment = typeof comments.$inferSelect;
+type Comment = typeof comments.$inferSelect;
 type NewComment = typeof comments.$inferInsert;
 
-type product = typeof products.$inferSelect;
+type Product = typeof products.$inferSelect;
 type NewProduct = typeof products.$inferInsert;
 
 export {
@@ -93,4 +93,4 @@ export {
 	commentsRelations,
 };
 
-export { User, NewUser, comment, NewComment, product, NewProduct };
+export { User, NewUser, Comment, NewComment, Product, NewProduct };

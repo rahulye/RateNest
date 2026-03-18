@@ -6,6 +6,9 @@ import cors from "cors";
 import ENV from "./config/env";
 import { clerkMiddleware } from "@clerk/express";
 import { pool } from "./db/index";
+import userRoutes from "./routes/userRoutes";
+import productRoutes from "./routes/productRoutes";
+import commentRoutes from "./routes/commentRoutes";
 
 // middlewares
 app.use(express.json()); // parse json payloads  Converts JSON → req.body
@@ -23,6 +26,11 @@ app.get("/health", (req, res) => {
 	console.log("hey from backend");
 	res.status(200).json({ message: "Server is running..." });
 });
+
+//ROUTES
+app.use("/api/users",userRoutes);
+app.use("/api/products",productRoutes);
+app.use("/api/comments",commentRoutes);
 
 // START SERVER
 app.listen(ENV.PORT, () => {
