@@ -1,7 +1,7 @@
 /** @format */
 
 import { db } from "./index";
-import { desc, eq } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import {
 	users,
 	products,
@@ -39,7 +39,7 @@ const upsertUser = async (data: NewUser) => {
 
 //                              ------PRODUCTS------
 //create
-const createProducts = async (data: NewProduct) => {
+const createProduct = async (data: NewProduct) => {
 	const [product] = await db.insert(products).values(data).returning();
 	return product;
 };
@@ -81,7 +81,8 @@ const updateProduct = async (id: string, data: Partial<NewProduct>) => {
 		.where(eq(products.id, id))
 		.returning();
 	return product;
-}; //delete
+}; 
+//delete
 const deleteProduct = async (id: string) => {
 	const existingProduct = getByProductId(id);
 	if (!existingProduct) throw new Error(`Product with an ${id} is not found`);
@@ -116,4 +117,18 @@ const getCommentById = async (id: string) => {
 	});
 };
 
-export { createUser, updateUser, upsertUser, getUserById };
+export {
+	createUser,
+	updateUser,
+	upsertUser,
+	getUserById,
+	createProduct,
+	getByProductId,
+	getAllProducts,
+	getProductByUserId,
+	updateProduct,
+	deleteProduct,
+	createComment,
+	deleteComment,
+	getCommentById,
+};
