@@ -23,7 +23,7 @@ const createComment = async (req: Request, res: Response) => {
 				.status(404)
 				.json({ status: "Error", message: "Product not found" });
 
-		const text  = req.body.text as string;
+		const text = req.body.text as string;
 		if (!text)
 			return res
 				.status(400)
@@ -62,33 +62,23 @@ const deleteComment = async (req: Request, res: Response) => {
 				.status(400)
 				.json({ status: "Error", message: "Missing comment id." });
 		const comment = await queries.getCommentById(commentId);
-		if (!comment)
-			return res
-				.status(404)
-				.json({ status: "Error", message: "Comment not found" });
-
-		const { content } = req.body;
-		if (!content)
-			return res
-				.status(400)
-				.json({ status: "Error", message: "Missing content field" });
-
-		if (!comment)
-			return res
-				.status(404)
-				.json({ status: "Error", message: "Comment not found" });
-
+		if (!comment) {
+			return res.status(404).json({
+				status: "Error",
+				message: "Comment not found.",
+			});
+		}
 		if (userId !== comment.userId)
 			return res.status(403).json({
 				status: "Error",
 				message: "You do not have permission to perform this action",
 			});
 
-		const deleteComment = await queries.deleteComment(commentId);
+		const deletedComment  = await queries.deleteComment(commentId);
 		return res.status(200).json({
 			status: "Success",
 			message: "Comment deleted Successfully",
-			data: deleteComment,
+			data: deletedComment ,
 		});
 	} catch (err) {
 		console.error("Error deleting a comment: ", err);
