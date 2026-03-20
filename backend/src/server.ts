@@ -23,7 +23,7 @@ app.use(
 	}),
 );
 app.get("/health", (req, res) => {
-	console.log("hey from backend");
+	// console.log("hey from backend");
 	res.status(200).json({ message: "Server is running..." });
 });
 
