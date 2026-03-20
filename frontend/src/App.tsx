@@ -1,19 +1,40 @@
 /** @format */
 
-import { useState } from "react";
-import "./App.css";
-import axios from "axios";
+// import { useState } from "react";
+// import axios from "axios";
+import { Route, Routes } from "react-router";
+import Navbar from "./components/Navbar";
+import CreatePage from "./pages/CreatePage";
+import EditPage from "./pages/EditPage";
+import HomePage from "./pages/HomePage";
+import ProductPage from "./pages/ProductPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
-	const [message, setMessage] = useState("");
-  axios.get("http://localhost:5000/health").then((res) => {
-      setMessage(res.data.message)
-  }).catch(() => {
-    return setMessage("Backend not reachable");
-  });
-  return <>
-    <p>{message}</p>
-  </>;
+	// const [message, setMessage] = useState("");
+	// axios
+	// 	.get("http://localhost:5000/health")
+	// 	.then((res) => {
+	// 		setMessage(res.data.message);
+	// 	})
+	// 	.catch(() => {
+	// 		return setMessage("Backend not reachable");
+	// 	});
+	// console.log(message);
+	return (
+		<div className="min-h-screen bg-base-100 ">
+			<Navbar />
+			<main className="max-w-5xl mx-auto px-4 py-8">
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+				<Route path="/product/:id" element={<ProductPage />} />
+				<Route path="/profile" element={<ProfilePage />} />
+				<Route path="/create" element={<CreatePage />} />
+				<Route path="/edit/:id" element={<EditPage />} />
+			</Routes>
+			</main>
+		</div>
+	);
 }
 
 export default App;

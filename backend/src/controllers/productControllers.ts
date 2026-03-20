@@ -3,7 +3,7 @@ import * as queries from "../db/queries";
 import type { Request, Response } from "express";
 import { getAuth } from "@clerk/express";
 
-//fetch all products
+//fetch all products (public)
 const getAllProducts = async (req: Request, res: Response) => {
 	try {
 		const products = await queries.getAllProducts();
@@ -15,7 +15,7 @@ const getAllProducts = async (req: Request, res: Response) => {
 			.json({ status: "Error", message: "Failed to fetch all products" });
 	}
 };
-//fetch a product by product id
+//fetch a product by product id (public)
 const getByProductId = async (req: Request, res: Response) => {
 	try {
 		const productId = req.params.productId as string;

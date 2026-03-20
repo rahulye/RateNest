@@ -139,28 +139,58 @@ code .                 - open current folder in VS Code
 
 npm create vite@latest
 npm create vite@latest .           // root directory (default name)
+npm install axios
+npm i react-router@latest         // for router component
 
 >>>TAILWIND
 npm install tailwindcss @tailwindcss/vite
-
           @vite.config.ts
           //  import tailwindcss from '@tailwindcss/vite'
           //  plugins : [tailwindcss()]
+          @index.css
+          //  @import "tailwindcss";
+>>>Daisy UI
+npm i -D daisyui@latest
+          @index.css
+          //  @plugin "daisyui" {
+                themes: all;
+                logs: false;
+              }
+>>ICONS
+npm install lucide-react
 
-npm install axios
+>>CLERK
+npm install @clerk/react
+                // see the documentation and import in main.tsx
+  @main.tsx 
+            import { StrictMode } from "react";
+            import { createRoot } from "react-dom/client";
+            import "./index.css";
+            import App from "./App.tsx";
+            import { ClerkProvider } from "@clerk/react";
+            const publishableKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+            if (!publishableKey) throw new Error("Missing publish Key");
+            createRoot(document.getElementById("root")!).render(
+              <StrictMode>
+                <ClerkProvider publishableKey={publishableKey}>
+                  <App />
+                </ClerkProvider>
+              </StrictMode>,
+            ); 
+          
 
 
 --------BACKEND-------
 
 npm init -y		 // install package.json
 npm install express
+npm install dotenv         //dotenv loads environment variables from a .env file into process.env, Without dotenv, Node cannot read this file automatically. 
+npm install axios
+npm install cors
+npm install @clerk/express
 npm install pg
 npm install mongoose     //mongoose contains mongodb node.js drive internally no need to install mongodb separately\
-npm install @clerk/express
 npm install drizzle-orm
-npm install cors
-npm install axios
-npm install dotenv         //dotenv loads environment variables from a .env file into process.env, Without dotenv, Node cannot read this file automatically. 
 
 npm install -D nodemon          --> add "dev" : "nodemon src/server.ts"
 npm install -D ts-node
@@ -176,8 +206,8 @@ npm install jsonwebtoken
 
 >cookie pasrse
 npm install cookie-PARSER                          // expressJS does not parse cookie , we have to parse by middleware.
-import cookieParser from "cookie-parser";              - in server.js
-app.use(cookieParser()); 
+              //  import cookieParser from "cookie-parser";              - in server.js
+              //  app.use(cookieParser()); 
 
 
 >>>>Validation
