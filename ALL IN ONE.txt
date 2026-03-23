@@ -141,6 +141,7 @@ npm create vite@latest
 npm create vite@latest .           // root directory (default name)
 npm install axios
 npm i react-router@latest         // for router component
+npm i @tanstack/react-query       // TanStack Query removes repetitive API code and improves performance by caching server data and keeping the UI in sync.
 
 >>>TAILWIND
 npm install tailwindcss @tailwindcss/vite

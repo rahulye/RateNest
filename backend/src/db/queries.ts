@@ -9,6 +9,7 @@ import {
 	type NewUser,
 	type NewComment,
 	type NewProduct,
+	Product,
 } from "./schema";
 
 //                              ------USER-----
@@ -39,12 +40,12 @@ const upsertUser = async (data: NewUser) => {
 
 //                              ------PRODUCTS------
 //create
-const createProduct = async (data: NewProduct) => {
+const createProduct = async (data: NewProduct) : Promise<Product> => {
 	const [product] = await db.insert(products).values(data).returning();
 	return product;
 };
 //get a product
-const getByProductId = async (id: string) => {
+const getByProductId = async (id: string): Promise<Product | undefined> => {
 	return await db.query.products.findFirst({
 		where: eq(products.id, id),
 		with: {
@@ -57,14 +58,14 @@ const getByProductId = async (id: string) => {
 	});
 };
 //get all product
-const getAllProducts = async () => {
+const getAllProducts = async (): Promise<Product[] | undefined> => {
 	return await db.query.products.findMany({
 		with: { user: true },
 		orderBy: (products, { desc }) => [desc(products.createdAt)],
 	});
 };
 //get a product by used id
-const getProductByUserId = async (userId: string) => {
+const getProductByUserId = async (userId: string): Promise<Product[]> => {
 	return await db.query.products.findMany({
 		where: eq(products.userId, userId),
 		with: { user: true },
@@ -72,8 +73,8 @@ const getProductByUserId = async (userId: string) => {
 	});
 };
 //update
-const updateProduct = async (id: string, data: Partial<NewProduct>) => {
-	const existingProduct = getByProductId(id);
+const updateProduct = async (id: string, data: Partial<NewProduct>) :Promise<Product> => {
+	const existingProduct = await getByProductId(id);
 	if (!existingProduct) throw new Error(`Product with an ${id} is not found`);
 	const [product] = await db
 		.update(products)
@@ -83,7 +84,7 @@ const updateProduct = async (id: string, data: Partial<NewProduct>) => {
 	return product;
 }; 
 //delete
-const deleteProduct = async (id: string) => {
+const deleteProduct = async (id: string) : Promise<Product> => {
 	const existingProduct = getByProductId(id);
 	if (!existingProduct) throw new Error(`Product with an ${id} is not found`);
 	const [product] = await db

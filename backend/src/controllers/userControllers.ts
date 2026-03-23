@@ -2,13 +2,14 @@
 import * as queries from "../db/queries";
 import type { Request, Response } from "express";
 import { getAuth } from "@clerk/express";
+import type { SyncUserBody } from "../../types/user";
 
 const syncUser = async (req: Request, res: Response) => {
 	try {
 		const { userId } = getAuth(req);
 		if (!userId)
 			return res.status(401).json({ status: "Error", message: "Unauthorized" });
-		const { email, name, imageURL } = req.body;
+		const { email, name, imageURL } = req.body as SyncUserBody;
 		if (!email || !name || !imageURL)
 			return res.status(400).json({
 				status: "Error",

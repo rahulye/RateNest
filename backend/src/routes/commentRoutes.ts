@@ -1,7 +1,7 @@
 import { Router } from "express";
 const router = Router();
 import { requireAuth } from "@clerk/express";
-import * as commentController from "../controllers/commentContollers"
+import * as commentController from "../controllers/commentControllers"
 
 // POST /api/comments/:productId  => create a comment (protected) 
 router.post("/:productId",requireAuth(),commentController.createComment);

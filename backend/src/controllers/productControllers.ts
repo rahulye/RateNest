@@ -2,6 +2,7 @@
 import * as queries from "../db/queries";
 import type { Request, Response } from "express";
 import { getAuth } from "@clerk/express";
+import type { UpdateProductBody, ProductBody } from "../../types/product";
 
 //fetch all products (public)
 const getAllProducts = async (req: Request, res: Response) => {
@@ -64,7 +65,7 @@ const createProduct = async (req: Request, res: Response) => {
 				status: "Error",
 				message: "Unauthorized",
 			});
-		const { title, description, imageURL } = req.body;
+		const { title, description, imageURL } = req.body as ProductBody;
 		if (!title || !description || !imageURL)
 			return res.status(400).json({
 				status: "Error",
@@ -116,18 +117,17 @@ const updateProduct = async (req: Request, res: Response) => {
 				status: "Error",
 				message: "You do not have permission to perform this action",
 			});
-		const { title, description, imageURL } = req.body;
-		if (!title || !description || !imageURL)
+		const updateData = req.body as UpdateProductBody;
+		if (Object.keys(updateData).length === 0)
 			return res.status(400).json({
 				status: "Error",
-				message: "Title, Description and imageURL are required",
+				message: "At least one field is required to update",
 			});
 
+		// updateData contains { title, description, imageURL };
 		const product = await queries.updateProduct(productId, {
 			userId,
-			title,
-			description,
-			imageURL,
+			...updateData
 		});
 		return res.status(200).json({
 			status: "Success",

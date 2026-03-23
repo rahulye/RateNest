@@ -9,7 +9,7 @@ import { SignInButton, SignUpButton, useAuth } from "@clerk/react";
 const Navbar = () => {
 	const { isSignedIn } = useAuth();
 	return (
-		<div className="border navbar bg-base-100 shadow-md">
+		<div className="navbar bg-base-100 shadow-md">
 			<div className="flex justify-between w-full max-w-5xl mx-auto items-center">
 				<div>
 					<Link to="/" className="gap-2 flex items-center">

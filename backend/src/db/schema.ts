@@ -74,7 +74,9 @@ const commentsRelations = relations(comments, ({ one }) => ({
 	}),
 }));
 
-// type interface
+// type interface for queries
+// Drizzle inferred types are for DB queries only
+// Use explicit names like DbComment, DbProduct, DbUser
 type User = typeof users.$inferSelect;
 type NewUser = typeof users.$inferInsert;
 

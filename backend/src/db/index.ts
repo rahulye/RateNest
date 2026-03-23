@@ -11,14 +11,8 @@ if (!ENV.DATABASE_URL) {
 
 // postgree connection pool
 
-const pool = new Pool({ connectionString: ENV.DATABASE_URL });
-pool.on("connect", () => {
-	console.log("Database connected successfully");
-});
-pool.on("error", (err) => {
-	console.error("Database is not connected:", err);
-});
-
+const pool = new Pool({ connectionString: ENV.DATABASE_URL }); // databse is connected when first query and runs until we say the pool.end() or server end porocess.end()
 const db = drizzle({ client: pool, schema });
+// “The database connects only when the first query is executed; until then, we only initialize the pool.”
 
 export { db, pool };
