@@ -12,9 +12,10 @@ const useSyncUser = () => {
 		mutationFn: syncUser,
 	});
 	useEffect(() => {
-		if (isSignedIn && user && !isPending && !isSuccess) {
+    const email = user?.primaryEmailAddress?.emailAddress;
+		if (isSignedIn && email && user && !isPending && !isSuccess) {
 			mutate({
-				email: user.primaryEmailAddress!.emailAddress,
+				email,
 				name: user.fullName ?? user.firstName ?? "User",
 				imageURL: user.imageUrl,
 			});

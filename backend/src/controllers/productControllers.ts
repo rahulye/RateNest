@@ -124,10 +124,24 @@ const updateProduct = async (req: Request, res: Response) => {
 				message: "At least one field is required to update",
 			});
 
+		// Whitelist allowed update fields
+		const { title, description, imageURL } = updateData;
+		const sanitizedUpdate = {
+			...(title !== undefined && { title }),
+			...(description !== undefined && { description }),
+			...(imageURL !== undefined && { imageURL }),
+		};
+
+		if (Object.keys(sanitizedUpdate).length === 0)
+			return res.status(400).json({
+				status: "Error",
+				message: "At least one valid field is required to update",
+			});
+
 		// updateData contains { title, description, imageURL };
 		const product = await queries.updateProduct(productId, {
 			userId,
-			...updateData
+			...sanitizedUpdate
 		});
 		return res.status(200).json({
 			status: "Success",

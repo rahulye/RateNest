@@ -8,18 +8,16 @@ import api from "../lib/axios";
 let isInterceptorRegistered = false;
 // Attach a Clerk auth token to every Axios request (when signed in)
 const useAuthReq = () => {
-	const { isSignedIn, isLoaded, getToken } = useAuth();
+	const { isLoaded, getToken } = useAuth();
 	useEffect(() => {
 		if (isInterceptorRegistered) return;
 		isInterceptorRegistered = true;
 		const interceptor = api.interceptors.request.use(async (config) => {
 			// axios automatically pass this config object
-			if (isSignedIn) {
 				const token = await getToken();
 				if (token) {
 					config.headers.Authorization = `Bearer ${token}`;
 				}
-			}
 			return config; // sends this to axios pipeline internally
 		});
 		// react run this clean up regardless of if condition
@@ -27,7 +25,7 @@ const useAuthReq = () => {
 			api.interceptors.request.eject(interceptor);
 			isInterceptorRegistered = false;
 		};
-	}, [isSignedIn, getToken]);
+	}, [getToken]);
 
 	return { isClerkLoaded: isLoaded };
 };

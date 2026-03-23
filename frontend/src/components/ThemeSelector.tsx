@@ -7,8 +7,10 @@ const THEMES = ["forest", "silk"];
 
 const ThemeSelector = () => {
 	const [theme, setTheme] = useState(() => {
-		if (typeof window !== "undefined")
-			return localStorage.getItem("theme") || "forest";
+		if (typeof window !== "undefined") {
+			const stored = localStorage.getItem("theme");
+			if (stored && THEMES.includes(stored)) return stored;
+		}
 		return "forest";
 	});
 
