@@ -1,5 +1,7 @@
 /** @format */
-interface Product {
+import type { UserBody } from "./user";
+import type { CommentBody } from "./comment";
+interface ProductBody {
 	id: string;
 	title: string;
 	description: string;
@@ -16,4 +18,10 @@ interface CreateProductBody {
 }
 
 type UpdateProductBody = Partial<CreateProductBody>;
-export type { UpdateProductBody, Product , CreateProductBody};
+
+interface ProductWithUserAndComments extends ProductBody {
+	user: UserBody
+	comments: CommentBody[]; 
+}
+
+export type { UpdateProductBody, ProductBody , CreateProductBody, ProductWithUserAndComments};

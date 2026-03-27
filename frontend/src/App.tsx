@@ -2,7 +2,7 @@
 
 // import { useState } from "react";
 // import axios from "axios";
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 import Navbar from "./components/Navbar";
 import CreatePage from "./pages/CreatePage";
 import EditPage from "./pages/EditPage";
@@ -23,19 +23,31 @@ function App() {
 	// 		return setMessage("Backend not reachable");
 	// 	});
 	// console.log(message);
-	const { isClerkLoaded } = useAuthReq();
+	const { isClerkLoaded, isSignedIn } = useAuthReq();
 	useSyncUser();
-	if(!isClerkLoaded) return;
+	if (!isClerkLoaded) return;
 	return (
 		<div className="min-h-screen bg-base-100 ">
 			<Navbar />
 			<main className="max-w-5xl mx-auto px-4 py-8">
 				<Routes>
 					<Route path="/" element={<HomePage />} />
-					<Route path="/product/:id" element={<ProductPage />} />
-					<Route path="/profile" element={<ProfilePage />} />
-					<Route path="/create" element={<CreatePage />} />
-					<Route path="/edit/:id" element={<EditPage />} />
+					<Route
+						path="/product/:id"
+						element={isSignedIn ? <ProductPage /> : <Navigate to={"/"} />}
+					/>
+					<Route
+						path="/profile"
+						element={isSignedIn ? <ProfilePage /> : <Navigate to={"/"} />}
+					/>
+					<Route
+						path="/create"
+						element={isSignedIn ? <CreatePage /> : <Navigate to={"/"}/>}
+					/>
+					<Route
+						path="/edit/:id"
+						element={isSignedIn ? <EditPage /> : <Navigate to={"/"} />}
+					/>
 				</Routes>
 			</main>
 		</div>

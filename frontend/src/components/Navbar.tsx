@@ -1,10 +1,9 @@
 /** @format */
 
 import { PlusIcon, ShoppingBagIcon, UserIcon } from "lucide-react";
-import React from "react";
 import { Link } from "react-router";
 import ThemeSelector from "./ThemeSelector";
-import { SignInButton, SignUpButton, useAuth } from "@clerk/react";
+import { SignInButton, SignUpButton, useAuth, UserButton } from "@clerk/react";
 
 const Navbar = () => {
 	const { isSignedIn } = useAuth();
@@ -31,6 +30,7 @@ const Navbar = () => {
 								<UserIcon className="size-5" />
 								<span className="hidden sm:inline">Profile</span>
 							</Link>
+							<UserButton></UserButton>
 						</>
 					) : (
 						<>

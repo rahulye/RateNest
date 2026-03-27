@@ -25,7 +25,7 @@ test → 		Adding or updating tests
 chore → 	Maintenance tasks (configs, dependencies)
 
 
-
+-
 git init                                                               # Initialize git
 git remote add origin https://github.com/rahulye/RateNest.git          # Connect to GitHub repo
 git remote -v                                                          # Verify remote
@@ -39,14 +39,14 @@ git push -u origin main    -u means Push branch 'main' and link it with origin/m
 
 After, git "git push" is default menas  git push origin main
 
-
+    
 # Create development branch
 git checkout -b develop
 
 # Push develop branch
 git push -u origin develop
 
-
+      /////////////
 # Example feature branch for development
 git checkout -b feature/backend-setup
 

@@ -85,7 +85,7 @@ const updateProduct = async (id: string, data: Partial<NewProduct>) :Promise<Pro
 }; 
 //delete
 const deleteProduct = async (id: string) : Promise<Product> => {
-	const existingProduct = getByProductId(id);
+	const existingProduct = await getByProductId(id);
 	if (!existingProduct) throw new Error(`Product with an ${id} is not found`);
 	const [product] = await db
 		.delete(products)

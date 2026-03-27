@@ -2,7 +2,12 @@
 
 import api from "./axios";
 import type { UserBody } from "../types/user";
-import type { CreateProductBody, Product, UpdateProductBody } from "../types/product";
+import type {
+	CreateProductBody,
+	ProductBody,
+	ProductWithUserAndComments,
+	UpdateProductBody,
+} from "../types/product";
 import type { CommentBody } from "../types/comment";
 import type { ApiResponse } from "../types/api";
 
@@ -13,34 +18,38 @@ const syncUser = async (userData: UserBody): Promise<ApiResponse<UserBody>> => {
 };
 
 // PRODUCTS API
-const getAllProducts = async (): Promise<ApiResponse<Product[]>> => {
+const getAllProducts = async (): Promise<
+	ApiResponse<ProductWithUserAndComments[]>
+> => {
 	const { data } = await api.get("/products/");
 	return data;
 };
-const getByProductId = async (id: string): Promise<ApiResponse<Product>> => {
+const getByProductId = async (
+	id: string,
+): Promise<ApiResponse<ProductBody>> => {
 	const { data } = await api.get(`/products/${id}`);
 	return data;
 };
-const getProductByUserId = async (): Promise<ApiResponse<Product[]>> => {
+const getProductByUserId = async (): Promise<ApiResponse<ProductBody[]>> => {
 	const { data } = await api.get("/products/my");
 	return data;
 };
 const createProduct = async (
 	productData: CreateProductBody,
-): Promise<ApiResponse<Product>> => {
+): Promise<ApiResponse<ProductBody>> => {
 	const { data } = await api.post("/products/", productData);
 	return data;
 };
 const updateProduct = async (
 	productId: string,
-	productData : UpdateProductBody,
-): Promise<ApiResponse<Product>> => {
+	productData: UpdateProductBody,
+): Promise<ApiResponse<ProductBody>> => {
 	const { data } = await api.patch(`/products/${productId}`, productData);
 	return data;
 };
 const deleteProduct = async (
 	productId: string,
-): Promise<ApiResponse<Product>> => {
+): Promise<ApiResponse<ProductBody>> => {
 	const { data } = await api.delete(`/products/${productId}`);
 	return data;
 };
