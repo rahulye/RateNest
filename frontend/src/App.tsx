@@ -26,15 +26,16 @@ function App() {
 	const { isClerkLoaded, isSignedIn } = useAuthReq();
 	useSyncUser();
 	if (!isClerkLoaded) return;
+	
 	return (
 		<div className="min-h-screen bg-base-100 ">
 			<Navbar />
 			<main className="max-w-5xl mx-auto px-4 py-8">
-				<Routes>
+				<Routes>	
 					<Route path="/" element={<HomePage />} />
 					<Route
 						path="/product/:id"
-						element={isSignedIn ? <ProductPage /> : <Navigate to={"/"} />}
+						element={<ProductPage /> }
 					/>
 					<Route
 						path="/profile"

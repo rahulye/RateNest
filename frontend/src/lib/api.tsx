@@ -8,7 +8,7 @@ import type {
 	ProductWithUserAndComments,
 	UpdateProductBody,
 } from "../types/product";
-import type { CommentBody } from "../types/comment";
+import type { CommentBody, CreateComment } from "../types/comment";
 import type { ApiResponse } from "../types/api";
 
 // USERS API
@@ -26,7 +26,7 @@ const getAllProducts = async (): Promise<
 };
 const getByProductId = async (
 	id: string,
-): Promise<ApiResponse<ProductBody>> => {
+): Promise<ApiResponse<ProductWithUserAndComments>> => {
 	const { data } = await api.get(`/products/${id}`);
 	return data;
 };
@@ -57,9 +57,9 @@ const deleteProduct = async (
 // COMMENTS API
 const createComment = async (
 	productId: string,
-	content: CommentBody,
-): Promise<ApiResponse<CommentBody>> => {
-	const { data } = await api.post(`/comments/${productId}`, content);
+	content: string,
+): Promise<ApiResponse<CreateComment>> => {
+	const { data } = await api.post(`/comments/${productId}`, {text:content});
 	return data;
 };
 const deleteComment = async (

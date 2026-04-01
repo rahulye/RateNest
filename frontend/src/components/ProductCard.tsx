@@ -8,7 +8,7 @@ interface Props {
 	product: ProductWithUserAndComments;
 }
 
-const onWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+const onWeekAgo = new Date(Date.now() - 1 * 24 * 60 * 60 * 1000);
 
 const ProductCard = ({ product }: Props) => {
 	const isNew = new Date(product.createdAt) > onWeekAgo;
@@ -17,7 +17,7 @@ const ProductCard = ({ product }: Props) => {
 		<Link
 			to={`/product/${product.id}`}
 			className="transition-all rounded-box duration-100 hover:scale-101 bg-base-300/50 tooltip tooltip-info"
-			data-tip={isNew && `Added within last 7 days`}
+			data-tip={isNew ? `Added within a day` : ""}
 		>
 			<figure className="p-3 overflow-hidden aspect-4/3 flex items-center justify-center">
 				<img

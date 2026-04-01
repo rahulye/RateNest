@@ -31,10 +31,10 @@ const getByProductId = async (req: Request, res: Response) => {
 				.json({ status: "Error", message: "Product is not found" });
 		return res.status(200).json({ status: "Success", data: product });
 	} catch (err) {
-		console.error("Error fetching a product ", err);
+		console.error("Error fetching a product by product id ", err);
 		return res
-			.status(500)
-			.json({ status: "Error", message: "Failed to fetch a product" });
+		.status(500)
+		.json({ status: "Error", message: "Failed to fetch a product by product id" });
 	}
 };
 //fetch my products (protected)
@@ -53,6 +53,7 @@ const getProductByUserId = async (req: Request, res: Response) => {
 		return res.status(500).json({
 			status: "error",
 			message: "Failed to fetch a product by user id",
+
 		});
 	}
 };

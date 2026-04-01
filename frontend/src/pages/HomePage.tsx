@@ -45,7 +45,7 @@ const HomePage = () => {
 						</p>
 						{ isSignedIn ? (
 							<Link to="/create" className="btn btn-primary btn-sm">
-								Create
+								Publish Product
 							</Link>
 						) : (
 							<SignUpButton mode="modal">

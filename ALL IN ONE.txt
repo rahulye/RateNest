@@ -39,12 +39,6 @@ git push -u origin main    -u means Push branch 'main' and link it with origin/m
 
 After, git "git push" is default menas  git push origin main
 
-    
-# Create development branch
-git checkout -b develop
-
-# Push develop branch
-git push -u origin develop
 
       /////////////
 # Example feature branch for development
@@ -88,6 +82,11 @@ touch file     - create a new file
 
 rm file        - delete a file
 rm -r folder   - delete a folder and its contents
+
+Server running in OS level due to vscode, node, or nodemon evn after we kill the terminal
+      //open cmd and type this to kill it`
+netstat -ano | findstr :5000
+taskkill /PID 2088 /F
 
 
 NODE / NPM
@@ -142,6 +141,10 @@ npm create vite@latest .           // root directory (default name)
 npm install axios
 npm i react-router@latest         // for router component
 npm i @tanstack/react-query       // TanStack Query removes repetitive API code and improves performance by caching server data and keeping the UI in sync.
+npm install date-fns             // for date like "2 months ago"
+      //  import { formatDistanceToNowStrict } from "date-fns";
+
+      //  {formatDistanceToNowStrict(new Date(comment.createdAt), { addSuffix: true })}
 
 >>>TAILWIND
 npm install tailwindcss @tailwindcss/vite

@@ -6,6 +6,22 @@ interface CommentBody {
 	productId: string;
 	createdAt: string;
 	userId: string;
+	user: CommentUser;
 }
 
-export type { CommentBody };
+interface CreateComment {
+	productId: string;
+	content: string;
+}
+
+interface DeleteComment {
+	commentId: string;
+}
+
+interface CommentUser {
+	id: string;
+	name: string;
+	imageURL: string;
+}
+
+export type { CommentBody, CreateComment, DeleteComment };

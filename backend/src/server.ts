@@ -15,6 +15,9 @@ app.use(express.json()); // parse json payloads  Converts JSON → req.body
 app.use(express.urlencoded({ extended: true })); // parse form submissions Converts form fields → req.body
 app.use(clerkMiddleware()); // Identifying loggedIn users
 
+
+
+
 app.use(
 	cors({
 		origin: ENV.ALLOWED_FRONTEND_URL,

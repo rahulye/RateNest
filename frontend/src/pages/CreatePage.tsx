@@ -28,7 +28,7 @@ const CreatePage = () => {
 		});
 	};
 	return (
-		<div className="max-w-2xl mx-auto space-y-5 py-10">
+		<div className="max-w-2xl mx-auto space-y-5 py-5">
 			<Link to={"/"} className="btn btn-ghost	">
 				<ArrowLeftIcon className="size-4"></ArrowLeftIcon>
 				<span>back</span>
@@ -47,7 +47,7 @@ const CreatePage = () => {
 								type="text"
 								required
 								placeholder="Product Title"
-								pattern="[A-Za-z][A-Za-z0-9\-]*"
+								pattern="[A-Za-z][A-Za-z0-9\_-]*"
 								minLength={3}
 								maxLength={25}
 								value={formData.title}
