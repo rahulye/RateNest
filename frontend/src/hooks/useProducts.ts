@@ -44,6 +44,7 @@ const useDeleteProductById = () => {
 		onSuccess: (_, id) => {
 			queryClient.invalidateQueries({ queryKey: ["myProducts"] });
 			queryClient.invalidateQueries({ queryKey: ["product", id] });
+			queryClient.invalidateQueries({ queryKey: ["products"] });
 		},
 	});
 };

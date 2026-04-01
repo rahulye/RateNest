@@ -20,10 +20,10 @@ router.post("/", requireAuth(), productControllers.createProduct);
 // GET /api/products/:productId => get a product by product Id (public)
 router.get("/:productId", productControllers.getByProductId);
 
-// PUT /api/products/:productId => update a product only by current user (protected - owner only)
+// PATCH /api/products/:productId => update a product only by current user (protected - owner only)
 router.patch("/:productId", requireAuth(), productControllers.updateProduct);
 
-// PUT /api/products/:productId => delete a product only by current user (protected - owner only)
+// DELETE /api/products/:productId => delete a product only by current user (protected - owner only)
 router.delete("/:productId", requireAuth(), productControllers.deleteProduct);
 
 export default router;

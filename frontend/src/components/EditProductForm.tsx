@@ -89,7 +89,7 @@ const EditProductForm = ({ product, updateProduct }: Props) => {
 								onChange={(e) =>
 									setFormData({ ...formData, imageURL: e.target.value })
 								}
-								pattern="^(https?://)?([a-zA-Z0-9]([a-zAF-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
+								pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
 								title="Must be valid URL"
 							/>
 						</label>
@@ -121,7 +121,7 @@ const EditProductForm = ({ product, updateProduct }: Props) => {
 
 						{updateProduct.isError && (
 							<div className="alert alert-error" role="alert">
-								Failed to create. Try again.
+								Failed to update. Try again.
 							</div>
 						)}
 						<button
