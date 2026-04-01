@@ -31,7 +31,7 @@ const ProductCard = ({ product }: Props) => {
 					{product.title}
 					{isNew && <div className="badge-sm badge badge-secondary">NEW</div>}
 				</h2>
-				<p className="text-base-content/80 line-clamp-2 text-xs">
+				<p className="text-base-content/80 line-clamp-2 min-h-8 text-xs">
 					{product.description}
 				</p>
 				<div className="divider"></div>
@@ -43,14 +43,14 @@ const ProductCard = ({ product }: Props) => {
 							</div>
 						</div>
 						<p className="text-base-content/80">{product.user.name}</p>
-					</div>
-				)}
-				{product.comments && (
-					<div className="flex">
-						<MessageCircleIcon></MessageCircleIcon>
-						<p className="text-base-content/80 text-sm">
-							{product.comments.length}
-						</p>
+						{product.comments.length >= 0 && (
+							<div className="flex items-center">
+								<div className="flex items-center gap-1 text-xs text-base-content/80 bg-base-200 px-2 py-1 rounded-full">
+									<MessageCircleIcon className="size-5" />
+									<span>{product.comments.length}</span>
+								</div>
+							</div>
+						)}
 					</div>
 				)}
 			</div>

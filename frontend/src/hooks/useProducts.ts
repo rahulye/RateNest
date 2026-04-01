@@ -7,7 +7,11 @@ import {
 	getAllProducts,
 	getByProductId,
 	getProductByUserId,
+	updateProduct,
 } from "../lib/api";
+import type { CreateProductBody, ProductBody, UpdateProductBody } from "../types/product";
+import type { ApiResponse } from "../types/api";
+
 // get all products
 const useProducts = () => {
 	return useQuery({
@@ -15,13 +19,15 @@ const useProducts = () => {
 		queryFn: getAllProducts,
 	});
 };
-// create products
+
+// create product 
 const useCreateProducts = () => {
-	return useMutation({
+	return useMutation<ApiResponse<ProductBody>, Error, CreateProductBody>({
 		mutationFn: createProduct,
 	});
 };
-// get product by id
+
+// get product by id 
 const useGetProductById = (id: string) => {
 	return useQuery({
 		queryKey: ["product", id],
@@ -30,22 +36,42 @@ const useGetProductById = (id: string) => {
 	});
 };
 
-// delete product by id
+// delete product
 const useDeleteProductById = () => {
 	const queryClient = useQueryClient();
-	return useMutation({
-		mutationFn: (id: string) => deleteProduct(id),
-		onSuccess: (_,id) => {
+	return useMutation<ApiResponse<ProductBody>, Error, string>({
+		mutationFn: (id) => deleteProduct(id),
+		onSuccess: (_, id) => {
 			queryClient.invalidateQueries({ queryKey: ["myProducts"] });
 			queryClient.invalidateQueries({ queryKey: ["product", id] });
 		},
 	});
 };
 
+// my products
 const useMyProducts = () => {
 	return useQuery({
 		queryKey: ["myProducts"],
 		queryFn: getProductByUserId,
+	});
+};
+
+// update product
+const useUpdateProduct = () => {
+	const queryClient = useQueryClient();
+	return useMutation<
+		ApiResponse<ProductBody>,
+		Error,
+		{ id: string; data: UpdateProductBody }
+	>({
+		mutationFn: ({ id, data }) => updateProduct(id, data),
+		onSuccess: (_, variables) => {
+			queryClient.invalidateQueries({ queryKey: ["products"] });
+			queryClient.invalidateQueries({
+				queryKey: ["product", variables.id],
+			});
+			queryClient.invalidateQueries({ queryKey: ["myProducts"] });
+		},
 	});
 };
 
@@ -55,4 +81,5 @@ export {
 	useGetProductById,
 	useDeleteProductById,
 	useMyProducts,
+	useUpdateProduct,
 };

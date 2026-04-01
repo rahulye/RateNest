@@ -60,7 +60,7 @@ const getByProductId = async (id: string): Promise<Product | undefined> => {
 //get all product
 const getAllProducts = async (): Promise<Product[] | undefined> => {
 	return await db.query.products.findMany({
-		with: { user: true },
+		with: { user: true , comments: true},
 		orderBy: (products, { desc }) => [desc(products.createdAt)],
 	});
 };

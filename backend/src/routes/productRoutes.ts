@@ -21,7 +21,7 @@ router.post("/", requireAuth(), productControllers.createProduct);
 router.get("/:productId", productControllers.getByProductId);
 
 // PUT /api/products/:productId => update a product only by current user (protected - owner only)
-router.put("/:productId", requireAuth(), productControllers.updateProduct);
+router.patch("/:productId", requireAuth(), productControllers.updateProduct);
 
 // PUT /api/products/:productId => delete a product only by current user (protected - owner only)
 router.delete("/:productId", requireAuth(), productControllers.deleteProduct);
