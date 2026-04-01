@@ -22,6 +22,15 @@ const CommentSection = ({ product, userId }: Props) => {
 	const [content, setContent] = useState("");
 	const createComment = useCreateComment();
 	const deleteComment = useDeleteComment(product.id);
+	const [deletingCommentId, setDeletingCommentId] = useState<string | null>(null);
+
+	const handleDelete = (commentId: string) => {
+		if (!confirm("Delete?")) return;
+		setDeletingCommentId(commentId);
+		deleteComment.mutate(commentId, {
+			onSettled: () => setDeletingCommentId(null),
+		});
+	};
 	const handleComment = (e: { preventDefault: () => void }) => {
 		e.preventDefault();
 		if (!content.trim()) return;
@@ -97,21 +106,19 @@ const CommentSection = ({ product, userId }: Props) => {
 							<img
 								className="avatar size-7 rounded-full"
 								src={comment.user.imageURL}
-							></img>
-							<div className="chat-bubble chat-bubble-neutral">
+								alt={`${comment.user.name}'s avatar`}
+							/>							<div className="chat-bubble chat-bubble-neutral">
 								{comment.content}
 							</div>
 						</div>
 						{userId === comment.userId && (
 							<div className="chat-footer">
 								<button
-									onClick={() =>
-										confirm("Delete?") && deleteComment.mutate(comment.id)
-									}
+									onClick={() => handleDelete(comment.id)}
 									className="btn btn-ghost btn-xs text-error"
-									disabled={deleteComment.isPending}
+									disabled={deletingCommentId === comment.id}
 								>
-									{deleteComment.isPending ? (
+									{deletingCommentId === comment.id ? (
 										<span className="loading loading-spinner loading-xs" />
 									) : (
 										<Trash2Icon className="size-3" />

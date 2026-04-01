@@ -10,7 +10,7 @@ import { requireAuth } from "@clerk/express";
 router.get("/", productControllers.getAllProducts);
 
 
-// GET /api/products/my =E> get current user products only by user (protected - owner only)
+// GET /api/products/my => get current user products only by user (protected - owner only)
 router.get("/my",requireAuth(), productControllers.getProductByUserId);
 
 

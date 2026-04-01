@@ -22,11 +22,11 @@ const useCreateProducts = () => {
 	});
 };
 // get product by id
-const useGetProducyById = (id: string) => {
+const useGetProductById = (id: string) => {
 	return useQuery({
 		queryKey: ["product", id],
 		queryFn: () => getByProductId(id),
-		enabled: !!id,
+		enabled: !!id,  //Use enabled ONLY when a query depends on something that may be undefined
 	});
 };
 
@@ -35,8 +35,9 @@ const useDeleteProductById = () => {
 	const queryClient = useQueryClient();
 	return useMutation({
 		mutationFn: (id: string) => deleteProduct(id),
-		onSuccess: () => {
+		onSuccess: (_,id) => {
 			queryClient.invalidateQueries({ queryKey: ["myProducts"] });
+			queryClient.invalidateQueries({ queryKey: ["product", id] });
 		},
 	});
 };
@@ -51,7 +52,7 @@ const useMyProducts = () => {
 export {
 	useProducts,
 	useCreateProducts,
-	useGetProducyById,
+	useGetProductById,
 	useDeleteProductById,
 	useMyProducts,
 };

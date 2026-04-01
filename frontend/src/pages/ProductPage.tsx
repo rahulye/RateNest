@@ -9,7 +9,7 @@ import {
 	User2Icon,
 } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router";
-import { useDeleteProductById, useGetProducyById } from "../hooks/useProducts";
+import { useDeleteProductById, useGetProductById } from "../hooks/useProducts";
 import LoadingSpinner from "../components/LoadingSpinner";
 import CommentSection from "../components/CommentSection";
 
@@ -17,8 +17,21 @@ const ProductPage = () => {
 	const { userId } = useAuth();
 	const navigate = useNavigate();
 	const { id } = useParams<{ id: string }>();
-	const { isLoading, isError, data: product } = useGetProducyById(id!);
 	const deleteProduct = useDeleteProductById();
+	const { isLoading, isError, data: product } = useGetProductById(id!);
+	if (!id) {
+		return (
+			<div className="flex flex-col items-center gap-5">
+				<span>Invalid product ID.</span>
+				<Link to={"/"}>
+					<div className="btn btn-primary btn-ghost btn-sm outline">
+						<ArrowLeftIcon className="size-4"></ArrowLeftIcon>
+						Home
+					</div>
+				</Link>
+			</div>
+		);
+	}
 	if (isLoading) return <LoadingSpinner />;
 	if (isError || !product)
 		return (
@@ -27,22 +40,23 @@ const ProductPage = () => {
 				<Link to={"/"}>
 					<div className="btn btn-primary btn-ghost btn-sm outline">
 						<ArrowLeftIcon className="size-4"></ArrowLeftIcon>
-						Home</div>
+						Home
+					</div>
 				</Link>
 			</div>
 		);
 	const isOwner = userId === product?.data.userId;
-	const handleMutate = (id:string) => {
+	const handleMutate = (id: string) => {
 		if (confirm("Delete this product permanently?")) {
 			deleteProduct.mutate(id, {
 				onSuccess: () => navigate("/"),
 			});
 		}
 	};
-	const date = new Date(product.data.createdAt).toLocaleDateString("en-GB",{
-		day:"2-digit",
-		month:"long",
-		year:"numeric"
+	const date = new Date(product.data.createdAt).toLocaleDateString("en-GB", {
+		day: "2-digit",
+		month: "long",
+		year: "numeric",
 	});
 	return (
 		<div className="max-w-4xl mx-auto space-y-5 py-5">
@@ -87,6 +101,7 @@ const ProductPage = () => {
 							<img
 								className="h-80 rounded-box object-contain"
 								src={product.data.imageURL}
+								alt={product.data.title}
 							></img>
 						</figure>
 					</div>
@@ -106,7 +121,7 @@ const ProductPage = () => {
 							</div>
 						</div>
 						<div className="divider h-1"></div>
-						<div className="tex-sm text-base-content/80 whitespace-pre-wrap">
+						<div className="text-sm text-base-content/80 whitespace-pre-wrap">
 							{product.data.description}
 						</div>
 						<div className="divider h-1"></div>
@@ -114,7 +129,7 @@ const ProductPage = () => {
 							<div className="card-actions flex space-x-1 text-start">
 								<div className="avatar">
 									<div className="w-6 rounded-full">
-										<img src={product.data.user.imageURL}></img>
+										<img src={product.data.user.imageURL} alt={`${product.data.user.name}'s avatar`} />
 									</div>
 								</div>
 								<p className="text-base-content/80">{product.data.user.name}</p>
@@ -126,7 +141,7 @@ const ProductPage = () => {
 			{/* Comments */}
 			<div className="card bg-base-300/80 ">
 				<div className="card-body">
-					<CommentSection product={product.data} userId={userId}/>
+					<CommentSection product={product.data} userId={userId} />
 				</div>
 			</div>
 		</div>

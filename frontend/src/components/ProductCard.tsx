@@ -8,10 +8,10 @@ interface Props {
 	product: ProductWithUserAndComments;
 }
 
-const onWeekAgo = new Date(Date.now() - 1 * 24 * 60 * 60 * 1000);
+const onDayAgo = new Date(Date.now() - 1 * 24 * 60 * 60 * 1000);
 
 const ProductCard = ({ product }: Props) => {
-	const isNew = new Date(product.createdAt) > onWeekAgo;
+	const isNew = new Date(product.createdAt) > onDayAgo;
 
 	return (
 		<Link

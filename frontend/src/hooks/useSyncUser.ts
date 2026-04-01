@@ -16,7 +16,7 @@ const useSyncUser = () => {
 		if (isSignedIn && email && user && !isPending && !isSuccess) {
 			mutate({
 				email,
-				name: user.username ?? "User",
+				name: user.username ?? user.fullName ?? user.firstName ?? "User" ,
 				imageURL: user.imageUrl,
 			});
 		}

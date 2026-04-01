@@ -63,7 +63,7 @@ const ProfilePage = () => {
 				</div>
 			</div>
 			{/* products */}
-			{product?.data.length === 0 ? (
+			{product?.data?.length ? (
 				<div className="card bg-base-300">
 					<div className="card-body items-center text-center py-16">
 						<PackageIcon className="size-16 text-base-content/20" />
@@ -77,37 +77,39 @@ const ProfilePage = () => {
 					</div>
 				</div>
 			) : (
-				product?.data.map((product) => {
+				product?.data.map((item) => {
 					return (
-						<div className="card" key={product.id}>
+						<div className="card" key={item.id}>
 							<div className="card-side rounded-box bg-base-300/80 flex">
 								<figure className="w-42 shrink-0">
-									<img className="min-h-40 h-full" src={product.imageURL}></img>
+									<img
+										className="min-h-40 h-full"
+										src={item.imageURL}
+										alt={item.title}
+									/>
 								</figure>
 								<div className="p-4 flex flex-col flex-1 justify-between">
 									<div>
-										<span className="text-lg font-semibold">
-											{product.title}
-										</span>
+										<span className="text-lg font-semibold">{item.title}</span>
 										<span className="line-clamp-2 text-base-content/50">
-											{product.description}
+											{item.description}
 										</span>
 									</div>
 									<div className="card-actions justify-end mt-2">
 										<button
-											onClick={() => navigate(`/product/${product.id}`)}
+											onClick={() => navigate(`/product/${item.id}`)}
 											className="btn btn-ghost btn-xs gap-1"
 										>
 											<EyeIcon className="size-3" /> View
 										</button>
 										<button
-											onClick={() => navigate(`/edit/${product.id}`)}
+											onClick={() => navigate(`/edit/${item.id}`)}
 											className="btn btn-ghost btn-xs gap-1"
 										>
 											<EditIcon className="size-3" /> Edit
 										</button>
 										<button
-											onClick={() => handleDelete(product.id)}
+											onClick={() => handleDelete(item.id)}
 											className="btn btn-ghost btn-xs text-error gap-1"
 											disabled={deleteProduct.isPending}
 										>

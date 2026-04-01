@@ -51,7 +51,7 @@ const getProductByUserId = async (req: Request, res: Response) => {
 	} catch (err) {
 		console.error("Error fetching a product by user id ", err);
 		return res.status(500).json({
-			status: "error",
+			status: "Error",
 			message: "Failed to fetch a product by user id",
 
 		});

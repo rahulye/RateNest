@@ -83,10 +83,10 @@ touch file     - create a new file
 rm file        - delete a file
 rm -r folder   - delete a folder and its contents
 
-Server running in OS level due to vscode, node, or nodemon evn after we kill the terminal
-      //open cmd and type this to kill it`
+Server running in OS level due to vscode, node, or nodemon even after we kill the terminal
+      // Open cmd and type these commands to kill it:
 netstat -ano | findstr :5000
-taskkill /PID 2088 /F
+taskkill /PID <PID_from_above> /F       // Replace <PID_from_above> with the actual PID shown in netstat output
 
 
 NODE / NPM
