@@ -4,8 +4,9 @@
   "description": "RateNest is a full-stack **PERN** application that allows users to share products, write reviews, and rate products with secure authentication.",
   "main": "index.js",
   "engines": {
-    "node": ">=20.0.0"
-  },
+  "node": "20.x"
+},
+"express": "^4.21.0",
   "scripts": {
     "build": "npm install --prefix frontend && npm install --prefix backend && npm run build --prefix frontend && npm run build --prefix backend",
     "start": "npm run db:push --prefix backend && npm run start --prefix backend"
