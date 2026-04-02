@@ -68,7 +68,7 @@ const EditProductForm = ({ product, updateProduct }: Props) => {
 								minLength={3}
 								maxLength={25}
 								value={formData.title}
-								onChange={(e) =>
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 									setFormData({ ...formData, title: e.target.value })
 								}
 								title="Only letters, numbers, spaces or dashes"
@@ -86,7 +86,7 @@ const EditProductForm = ({ product, updateProduct }: Props) => {
 								required
 								placeholder="https://" 
 								value={formData.imageURL}
-								onChange={(e) =>
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 									setFormData({ ...formData, imageURL: e.target.value })
 								}
 								pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
@@ -111,7 +111,7 @@ const EditProductForm = ({ product, updateProduct }: Props) => {
 									placeholder="Description"
 									className="grow bg-transparent resize-none focus:outline-none min-h-30 whitespace-pre-wrap"
 									value={formData.description}
-									onChange={(e) =>
+									onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
 										setFormData({ ...formData, description: e.target.value })
 									}
 									required

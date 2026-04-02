@@ -57,7 +57,7 @@ const CommentSection = ({ product, userId }: Props) => {
 						placeholder="Add a comment..."
 						className="input outline-0  input-sm flex-1 bg-base-200"
 						value={content}
-						onChange={(e) => setContent(e.target.value)}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) => setContent(e.target.value)}
 						disabled={createComment.isPending}
 					/>
 					<button

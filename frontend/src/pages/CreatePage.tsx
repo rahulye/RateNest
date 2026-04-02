@@ -51,7 +51,7 @@ const CreatePage = () => {
 								minLength={3}
 								maxLength={25}
 								value={formData.title}
-								onChange={(e) =>
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 									setFormData({ ...formData, title: e.target.value })
 								}
 								title="Only letters, numbers or dash"
@@ -69,7 +69,7 @@ const CreatePage = () => {
 								required
 								placeholder="https://"
 								value={formData.imageURL}
-								onChange={(e) =>
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 									setFormData({ ...formData, imageURL: e.target.value })
 								}
 								pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
@@ -94,7 +94,7 @@ const CreatePage = () => {
 									placeholder="Description"
 									className="grow bg-transparent resize-none focus:outline-none min-h-30"
 									value={formData.description}
-									onChange={(e) =>
+									onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
 										setFormData({ ...formData, description: e.target.value })
 									}
 									required
