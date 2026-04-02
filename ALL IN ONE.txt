@@ -88,18 +88,21 @@ Server running in OS level due to vscode, node, or nodemon even after we kill th
 netstat -ano | findstr :5000
 taskkill /PID <PID_from_above> /F       // Replace <PID_from_above> with the actual PID shown in netstat output
 
+----------------DEPLOYMENT-----------------
 
 NODE / NPM
 
 npm init -y            - create package.json automatically
 npm install            - install all dependencies
-
+npm run build          - build project
+      // "build": "tsc"   --> converts ts to js for prduction   -- creates dist
+npm run dev            - run development script
+npm run start           -- run the server in prduction (prduction server.js file in dist/server.js ) 
+        // "start":"node dist/server.js"
 npm install package    - install a specific package
 
 npm install -D package - install a dev dependency
 
-npm run dev            - run development script
-npm run build          - build project
 
 
 GIT COMMANDS

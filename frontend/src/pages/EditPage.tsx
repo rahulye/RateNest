@@ -11,8 +11,7 @@ const EditPage = () => {
 	const { id } = useParams();
 	const product = useGetProductById(id!);
 	const updateProduct = useUpdateProduct();
-	if (product.isLoading) return <LoadingSpinner />;
-	if (!product.data?.data) {
+	if (!product.data?.data ) {
 		return <LoadingSpinner />;
 	}
 	if (!product || product.data?.data.userId !== userId) {

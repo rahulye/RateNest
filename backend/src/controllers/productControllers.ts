@@ -2,7 +2,7 @@
 import * as queries from "../db/queries";
 import type { Request, Response } from "express";
 import { getAuth } from "@clerk/express";
-import type { UpdateProductBody, ProductBody } from "../../types/product";
+import type { UpdateProductBody, ProductBody } from "../types/product";
 
 //fetch all products (public)
 const getAllProducts = async (req: Request, res: Response) => {

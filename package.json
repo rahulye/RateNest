@@ -1,0 +1,25 @@
+{
+  "name": "ratenest",
+  "version": "1.0.0",
+  "description": "RateNest is a full-stack **PERN** application that allows users to share products, write reviews, and rate products with secure authentication.",
+  "main": "index.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "npm install --prefix frontend && npm install --prefix backend && npm run build --prefix frontend && npm run build --prefix backend",
+    "start":"npm run db:push --prefix backend && npm run start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rahulye/RateNest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/rahulye/RateNest/issues"
+  },
+  "homepage": "https://github.com/rahulye/RateNest#readme"
+}

@@ -71,7 +71,7 @@ const EditProductForm = ({ product, updateProduct }: Props) => {
 								onChange={(e) =>
 									setFormData({ ...formData, title: e.target.value })
 								}
-								title="Only letters, numbers or dash"
+								title="Only letters, numbers, spaces or dashes"
 							/>
 						</label>
 						<p className="validator-hint">

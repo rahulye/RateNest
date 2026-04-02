@@ -8,4 +8,4 @@ interface ProductBody {
 
 type UpdateProductBody = Partial<ProductBody>
 
-export { ProductBody , UpdateProductBody };
+export type { ProductBody , UpdateProductBody };

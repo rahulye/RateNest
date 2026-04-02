@@ -2,7 +2,7 @@
 import * as queries from "../db/queries";
 import type { Request, Response } from "express";
 import { getAuth } from "@clerk/express";
-import type { SyncUserBody } from "../../types/user";
+import type { SyncUserBody } from "../types/user";
 
 const syncUser = async (req: Request, res: Response) => {
 	try {

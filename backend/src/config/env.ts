@@ -1,6 +1,6 @@
 /** @format */
 
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 dotenv.config({ quiet: true });
 
 const ENV = {

@@ -9,14 +9,13 @@ import { pool } from "./db/index";
 import userRoutes from "./routes/userRoutes";
 import productRoutes from "./routes/productRoutes";
 import commentRoutes from "./routes/commentRoutes";
+import type { Request, Response } from "express";
+import path from "path";
 
 // middlewares
 app.use(express.json()); // parse json payloads  Converts JSON → req.body
 app.use(express.urlencoded({ extended: true })); // parse form submissions Converts form fields → req.body
 app.use(clerkMiddleware()); // Identifying loggedIn users
-
-
-
 
 app.use(
 	cors({
@@ -25,15 +24,27 @@ app.use(
 		credentials: true,
 	}),
 );
-app.get("/health", (req, res) => {
+app.get("/health", (req: Request, res: Response) => {
 	// console.log("hey from backend");
 	res.status(200).json({ message: "Server is running..." });
 });
-
 //ROUTES
-app.use("/api/users",userRoutes);
-app.use("/api/products",productRoutes);
-app.use("/api/comments",commentRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/comments", commentRoutes);
+
+// FOR SAVELLA 
+if (ENV.NODE_ENV === "production") {
+  const dirname = path.resolve();
+
+  // serve static files from frontend/dist
+  app.use(express.static(path.join(dirname, "../frontend/dist")));
+
+  // handle SPA routing - send all non-API routes to index.html - react app
+  app.get("/{*any}", (req, res) => {
+    res.sendFile(path.join(dirname, "../frontend/dist/index.html"));
+  });
+}
 
 // START SERVER
 app.listen(ENV.PORT, () => {
