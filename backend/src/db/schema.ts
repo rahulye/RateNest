@@ -95,4 +95,4 @@ export {
 	commentsRelations,
 };
 
-export { User, NewUser, Comment, NewComment, Product, NewProduct };
+export type { User, NewUser, Comment, NewComment, Product, NewProduct };

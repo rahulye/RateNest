@@ -5,4 +5,4 @@ interface SyncUserBody {
 }
 
 
-export {SyncUserBody}
+export type {SyncUserBody}
