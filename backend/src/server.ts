@@ -10,7 +10,6 @@ import userRoutes from "./routes/userRoutes";
 import productRoutes from "./routes/productRoutes";
 import commentRoutes from "./routes/commentRoutes";
 import type { Request, Response } from "express";
-import path from "path";
 
 // middlewares
 app.use(express.json()); // parse json payloads  Converts JSON → req.body
@@ -33,20 +32,6 @@ app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/comments", commentRoutes);
 
-// FOR PRODUCTION (Render / Sevalla)
-if (ENV.NODE_ENV === "production") {
-  const dirname = path.resolve();
-
-  // Serve React static files
-  app.use(express.static(path.join(dirname, "../frontend/dist")));
-
-  // SPA fallback
-  app.get("*", (req, res) => {
-    res.sendFile(
-      path.join(dirname, "../frontend/dist/index.html")
-    );
-  });
-}
 
 // START SERVER
 app.listen(ENV.PORT, () => {

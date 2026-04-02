@@ -13,7 +13,6 @@ const index_1 = require("./db/index");
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const productRoutes_1 = __importDefault(require("./routes/productRoutes"));
 const commentRoutes_1 = __importDefault(require("./routes/commentRoutes"));
-const path_1 = __importDefault(require("path"));
 // middlewares
 app.use(express_1.default.json()); // parse json payloads  Converts JSON → req.body
 app.use(express_1.default.urlencoded({ extended: true })); // parse form submissions Converts form fields → req.body
@@ -31,16 +30,6 @@ app.get("/health", (req, res) => {
 app.use("/api/users", userRoutes_1.default);
 app.use("/api/products", productRoutes_1.default);
 app.use("/api/comments", commentRoutes_1.default);
-// FOR SAVELLA 
-if (env_1.default.NODE_ENV === "production") {
-    const dirname = path_1.default.resolve();
-    // serve static files from frontend/dist
-    app.use(express_1.default.static(path_1.default.join(dirname, "../frontend/dist")));
-    // handle SPA routing - send all non-API routes to index.html - react app
-    app.get("/{*any}", (req, res) => {
-        res.sendFile(path_1.default.join(dirname, "../frontend/dist/index.html"));
-    });
-}
 // START SERVER
 app.listen(env_1.default.PORT, () => {
     console.log("Starting Server....");
