@@ -35,12 +35,12 @@ app.use("/api/comments", commentRoutes);
 
 // FOR DEPLOYMENT
 if (ENV.NODE_ENV === "production") {
-	const frontendPath = path.join("../../frontend/dist");
+	const frontendPath = path.resolve(__dirname, "../../frontend/dist");
 
 	// Serve frontend static files
 	app.use(express.static(frontendPath));
 
-	// SPA fallback — Express 5 SAFE
+	// SPA fallback (Express 5 safe)
 	app.use((req: Request, res: Response) => {
 		res.sendFile(path.join(frontendPath, "index.html"));
 	});
