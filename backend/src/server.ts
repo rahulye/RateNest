@@ -33,16 +33,18 @@ app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/comments", commentRoutes);
 
-// FOR SAVELLA 
+// FOR PRODUCTION (Render / Sevalla)
 if (ENV.NODE_ENV === "production") {
   const dirname = path.resolve();
 
-  // serve static files from frontend/dist
+  // Serve React static files
   app.use(express.static(path.join(dirname, "../frontend/dist")));
 
-  // handle SPA routing - send all non-API routes to index.html - react app
-  app.get("/{*any}", (req, res) => {
-    res.sendFile(path.join(dirname, "../frontend/dist/index.html"));
+  // SPA fallback
+  app.get("*", (req, res) => {
+    res.sendFile(
+      path.join(dirname, "../frontend/dist/index.html")
+    );
   });
 }
 
