@@ -35,7 +35,7 @@ app.use("/api/comments", commentRoutes);
 
 // FOR DEPLOYMENT
 if (ENV.NODE_ENV === "production") {
-	const frontendPath = path.join("../../frontend/dist");
+	const frontendPath = path.join(__dirname, "../../frontend/dist");
 
 	// Serve frontend static files
 	app.use(express.static(frontendPath));
