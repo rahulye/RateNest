@@ -10,7 +10,6 @@
 		"moduleResolution": "nodenext", // How TS finds modules (node_modules lookup)
 		"resolveJsonModule": true, // Allows importing .json files
 		"forceConsistentCasingInFileNames": true, // Prevents case-sensitivity bugs
-		"jsx": "react-jsx"
 	},
 	"include": ["src/**/*.ts"], // Which files to compile
 	"exclude": ["node_modules"] // Which files to ignore
