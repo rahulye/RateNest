@@ -12,7 +12,7 @@ refactor → Code change that improves structure but doesn’t add features or f
 
 test → Adding or updating tests 					(ex: test: add unit test for addition)
 
-chore → Maintenance tasks like updating dependencies, configs, or CI/CD    (ex: chore: update npm packages)
+chore → Maintenance tasks like updating dependencies, configs, or CI/CD    (ex: chore: update npm packages) // deployment too
 
 
 
