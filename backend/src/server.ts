@@ -34,14 +34,14 @@ app.use("/api/products", productRoutes);
 app.use("/api/comments", commentRoutes);
 
 // FOR DEPLOYMENT
-if (ENV.NODE_ENV === "production") {
+if (ENV.NODE_ENV === "PRODUCTION") {
 	const frontendPath = path.join(__dirname, "../../frontend/dist");
 
 	// Serve frontend static files
 	app.use(express.static(frontendPath));
 
-	// SPA fallback — Express 5 SAFE
-	app.use((req: Request, res: Response) => {
+	// SPA fallback (important)
+	app.get("/*", (req: Request, res: Response) => {
 		res.sendFile(path.join(frontendPath, "index.html"));
 	});
 }
