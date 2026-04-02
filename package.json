@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "npm install --prefix frontend && npm install --prefix backend && npm run build --prefix frontend && npm run build --prefix backend",
-    "start":"npm run db:push --prefix backend && npm run start --prefix backend"
+    "start": "npm run db:push --prefix backend && npm run start --prefix backend"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,13 @@
   "bugs": {
     "url": "https://github.com/rahulye/RateNest/issues"
   },
-  "homepage": "https://github.com/rahulye/RateNest#readme"
+  "homepage": "https://github.com/rahulye/RateNest#readme",
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  }
 }
