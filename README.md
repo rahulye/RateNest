@@ -11,7 +11,6 @@ Guests can view all products, while authenticated users can create, update, and 
 https://github.com/user-attachments/assets/39a92bc5-5291-48b2-9936-4784be3e25a1
 
 
-
 ## API Routes
 
 ### Products
@@ -28,47 +27,6 @@ https://github.com/user-attachments/assets/39a92bc5-5291-48b2-9936-4784be3e25a1
 
 ### Users
 - `POST /api/users/sync` – Sync Clerk user with database
-
----
-
-## Features
-
-- Public product browsing (guest access)
-- User authentication (sign in / sign up)
-- Add, edit, and delete products (owner only)
-- Comment on products
-- Product rating system
-- User profile with "My Products"
-- Loading and error UI states
-- Responsive UI
-- Secure REST API
-- Theme modes
-
----
-## Tech Stack
-
-### Frontend
-- React (Vite)
-- TypeScript
-- Tailwind CSS
-- DaisyUI
-- TanStack Query
-- React Router
-- Clerk Authentication
-
-### Backend
-- Node.js
-- Express.js
-- TypeScript
-- Drizzle ORM
-- Clerk (Auth Middleware)
-
-### Database
-- PostgreSQL
-
-### Deployment
-- Frontend: Vercel
-- Backend: Render
   
 ---
 
@@ -76,6 +34,9 @@ https://github.com/user-attachments/assets/39a92bc5-5291-48b2-9936-4784be3e25a1
 
 **Home Page** – Guests and users can view all products  
 <img width="1919" height="1079" alt="Home page" src="https://github.com/user-attachments/assets/519d0486-b8ee-4ecb-b315-6e924f858b68" />
+
+**New Products** – Products added within the last 24 hours
+<img width="1227" height="616" alt="New products" src="https://github.com/user-attachments/assets/3f2a1db6-55f5-4f38-ab8e-eb3058f7ffcc" />
 
 **User Profile** – Only the authorized owner can view their profile  
 <img width="1919" height="682" alt="User profile" src="https://github.com/user-attachments/assets/c228944d-dd03-46be-acd6-626d3ed04c33" />
@@ -155,6 +116,47 @@ backend
 ├── package.json
 └── README.md
 ```
+
+---
+## Tech Stack
+
+### Frontend
+- React (Vite)
+- TypeScript
+- Tailwind CSS
+- DaisyUI
+- TanStack Query
+- React Router
+- Clerk Authentication
+
+### Backend
+- Node.js
+- Express.js
+- TypeScript
+- Drizzle ORM
+- Clerk (Auth Middleware)
+
+### Database
+- PostgreSQL
+
+### Deployment
+- Frontend: Vercel
+- Backend: Render
+
+---
+
+## Features
+
+- Public product browsing (guest access)
+- User authentication (sign in / sign up)
+- Add, edit, and delete products (owner only)
+- Comment on products
+- Product rating system
+- User profile with "My Products"
+- Loading and error UI states
+- Responsive UI
+- Secure REST API
+- Theme modes
 
 
 
