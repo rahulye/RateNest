@@ -5,7 +5,7 @@ Guests can view all products, while authenticated users can create, update, and 
 
 ---
 ## Preview
-[Live deomo](https://rate-nest-ten.vercel.app/)
+[Live demo](https://rate-nest-ten.vercel.app/)
 
 ## Screen Recorded Video
 https://github.com/user-attachments/assets/39a92bc5-5291-48b2-9936-4784be3e25a1
@@ -134,9 +134,7 @@ backend
 - Express.js
 - TypeScript
 - Drizzle ORM
-- Clerk (Auth Middleware)
-
-### Database
+- Clerk (middleware)
 - PostgreSQL
 
 ### Deployment
